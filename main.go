@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"gitlab.com/homezone/scaffold-me/scaffold"
+	"github.com/laurentpoirierfr/scaffold-me/scaffold"
 	"gopkg.in/src-d/go-git.v4"
 )
 
