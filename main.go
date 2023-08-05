@@ -7,10 +7,11 @@ import (
 
 	"github.com/laurentpoirierfr/scaffold-me/scaffold"
 	"gopkg.in/src-d/go-git.v4"
+	"gopkg.in/src-d/go-git.v4/plumbing"
 )
 
 const (
-	DEFAULT_SCAFFOLD_URL     = "https://github.com/laurentpoirierfr/default-scaffold"
+	DEFAULT_SCAFFOLD_URL     = "https://github.com/laurentpoirierfr/default-scaffold.git"
 	DEFAULT_SCAFFOLD_VERSION = "main"
 )
 
@@ -29,36 +30,42 @@ func main() {
 	}
 
 	dname, err := os.MkdirTemp("", "scaffold")
-	if err != nil {
-		log.Fatal(err)
-	}
+	checkIfError(err)
 	defer os.Remove(dname)
+
+	var referenceName plumbing.ReferenceName
+
+	if *version == DEFAULT_SCAFFOLD_VERSION {
+		referenceName = plumbing.NewBranchReferenceName(*version)
+	} else {
+		referenceName = plumbing.NewTagReferenceName(*version)
+	}
 
 	_, err = git.PlainClone(dname, false, &git.CloneOptions{
 		URL:               *repo,
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
+		ReferenceName:     referenceName,
+		SingleBranch:      true,
 	})
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	checkIfError(err)
 	os.RemoveAll(dname + "/.git")
 
 	path, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
+	checkIfError(err)
 
 	sourceFolder := dname
 	targetFolder := path
 
 	scaffolder, err := scaffold.NewScaffolder(sourceFolder, targetFolder)
-	if err != nil {
-		log.Fatal(err)
-	}
+	checkIfError(err)
 	err = scaffolder.Execute()
+	checkIfError(err)
+	log.Println("Bye ...")
+}
+
+func checkIfError(err error) {
 	if err != nil {
 		log.Fatal(err)
-	} else {
-		log.Println("Bye ...")
 	}
 }
