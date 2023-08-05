@@ -32,7 +32,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//defer os.Remove(dname)
+	defer os.Remove(dname)
 
 	r, err := git.PlainClone(dname, false, &git.CloneOptions{
 		URL:               *repo,
