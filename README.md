@@ -1,6 +1,4 @@
-# README
-
-## Scaffold-me
+# Scaffold-me
 
 ### Création d'un scaffolder
 
