@@ -1,5 +1,37 @@
 # Scaffold-me
 
+### Usage
+
+```bash
+git clone https://github.com/laurentpoirierfr/scaffold-me
+cd scaffold-me
+go install
+```
+
+Lors de vos travaux, positionnez-vous dans un répertoire de travail.
+
+```bash
+mkdir exemple
+cd exemple
+```
+Lancer l'outil scaffold-me
+
+```bash
+scaffold-me -r=<REPO_GIT_HTTPS> -v=<VERSION>
+```
+
+Valeur par défaut
+
+```bash
+scaffold-me 
+```
+Correspond à 
+
+```bash
+scaffold-me -r=https://github.com/laurentpoirierfr/default-scaffold -v=main
+```
+
+
 ### Création d'un scaffolder
 
 Exemple d'organisation de répertoire 
@@ -36,3 +68,9 @@ fields:
     description: "Nom du fichier : "
     default: "filename"
 ```
+
+Exemple d'intégraztion d'un field dans un fichier
+
+* https://github.com/laurentpoirierfr/default-scaffold
+
+
