@@ -34,20 +34,20 @@ func main() {
 	}
 	defer os.Remove(dname)
 
-	r, err := git.PlainClone(dname, false, &git.CloneOptions{
+	_, err = git.PlainClone(dname, false, &git.CloneOptions{
 		URL:               *repo,
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
+	os.RemoveAll(dname + "/.git")
 
 	path, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	r.Config()
 	sourceFolder := dname
 	targetFolder := path
 
