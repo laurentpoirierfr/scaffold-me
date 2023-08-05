@@ -48,7 +48,9 @@ Directory Organization Example
 └── scaffold.yml
 ```
 
-** Note **: *.tpl files will be renamed. So it's not mandatory to use it, unless you want to escape some files. Example of file escaped: .gitlab-ci.yml by taking .gitlab-ci.yml.tpl this avoids the activation of the file.
+### Note 
+
+*.tpl files will be renamed. So it's not mandatory to use it, unless you want to escape some files. Example of file escaped: .gitlab-ci.yml by taking .gitlab-ci.yml.tpl this avoids the activation of the file.
 
 
 ### scaffold.yml 
