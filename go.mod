@@ -1,4 +1,4 @@
-module gitlab.com/homezone/scaffold-me
+module github.com/laurentpoirierfr/scaffold-me
 
 go 1.20
 
