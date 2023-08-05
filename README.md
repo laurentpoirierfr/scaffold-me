@@ -8,33 +8,33 @@ cd scaffold-me
 go install
 ```
 
-Lors de vos travaux, positionnez-vous dans un répertoire de travail.
+During your work, position yourself in a working directory.
 
 ```bash
 mkdir exemple
 cd exemple
 ```
-Lancer l'outil scaffold-me
+Run the scaffold-me tool
 
 ```bash
 scaffold-me -r=<REPO_GIT_HTTPS> -v=<VERSION>
 ```
 
-Valeur par défaut
+Default value
 
 ```bash
 scaffold-me 
 ```
-Correspond à 
+Correspond to
 
 ```bash
 scaffold-me -r=https://github.com/laurentpoirierfr/default-scaffold -v=main
 ```
 
 
-### Création d'un scaffolder
+### Creation of a scaffolder
 
-Exemple d'organisation de répertoire 
+Directory Organization Example
 
 ```bash
 .
@@ -48,8 +48,7 @@ Exemple d'organisation de répertoire
 └── scaffold.yml
 ```
 
-Remarque : les fichiers *.tpl seront renommés. Donc ce n'est pas obligatoire de l'utilisé, sauf si vous voulez échappé certains  fichiers. Exemple de fichier a échapé : .gitlab-ci.yml en prenant .gitlab-ci.yml.tpl cela évite l'activation du fichier.
-
+** Note **: *.tpl files will be renamed. So it's not mandatory to use it, unless you want to escape some files. Example of file escaped: .gitlab-ci.yml by taking .gitlab-ci.yml.tpl this avoids the activation of the file.
 
 
 ### scaffold.yml 
@@ -69,7 +68,7 @@ fields:
     default: "filename"
 ```
 
-Exemple d'intégration d'un field dans un fichier
+Example of integrating a field into a file
 
 * https://github.com/laurentpoirierfr/default-scaffold
 
