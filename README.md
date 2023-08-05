@@ -1,37 +1,40 @@
+# README
 
-* https://earthly.dev/blog/tui-app-with-go/
+## Scaffold-me
 
-```golang
-func addContactForm() {
-    contact := Contact{}
+### Création d'un scaffolder
 
-    form.AddInputField("First Name", "", 20, nil, func(firstName string) {
-        contact.firstName = firstName
-    })
+Exemple d'organisation de répertoire 
 
-    form.AddInputField("Last Name", "", 20, nil, func(lastName string) {
-        contact.lastName = lastName
-    })
+```bash
+.
+├── cmd
+│   ├── main.go
+│   └── README.md.tpl
+├── filename
+│   └── %filename%-exemple.md
+├── go.mod.tpl
+├── README.md.tpl
+└── scaffold.yml
+```
 
-    form.AddInputField("Email", "", 20, nil, func(email string) {
-        contact.email = email
-    })
+Remarque : les fichiers *.tpl seront renommés. Donc ce n'est pas obligatoire de l'utilisé, sauf si vous voulez échappé certains  fichiers. Exemple de fichier a échapé : .gitlab-ci.yml en prenant .gitlab-ci.yml.tpl cela évite l'activation du fichier.
 
-    form.AddInputField("Phone", "", 20, nil, func(phone string) {
-        contact.phoneNumber = phone
-    })
 
-    // states is a slice of state abbreviations. Code is in the repo. 
-    form.AddDropDown("State", states, 0, func(state string, index int) {
-        contact.state = state
-    })
 
-    form.AddCheckbox("Business", false, func(business bool) {
-        contact.business = business
-    })
+### scaffold.yml 
 
-    form.AddButton("Save", func() {
-        contacts = append(contacts, contact)
-    })
-}
+```yaml
+version: "1"
+description: "[ Création d'un projet backend golang ]"
+fields:
+  - name : "project-name"
+    description: "Nom du projet     : "
+    default: "gitlab.com/homezone/project-name"
+  - name : "project-version"
+    description: "Version du projet : "
+    default: "v0.1.0"
+  - name : "filename"
+    description: "Nom du fichier : "
+    default: "filename"
 ```
