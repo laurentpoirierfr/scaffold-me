@@ -69,8 +69,10 @@ fields:
     default: "filename"
 ```
 
-Exemple d'intégraztion d'un field dans un fichier
+Exemple d'intégration d'un field dans un fichier
 
 * https://github.com/laurentpoirierfr/default-scaffold
+
+
 
 
