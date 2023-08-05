@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	DEFAULT_SCAFFOLD_URL     = "https://gitlab.com/homezone/scaffolds/default"
+	DEFAULT_SCAFFOLD_URL     = "https://github.com/laurentpoirierfr/default-scaffold"
 	DEFAULT_SCAFFOLD_VERSION = "main"
 )
 
@@ -42,9 +42,14 @@ func main() {
 		log.Fatal(err)
 	}
 
+	path, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	r.Config()
-	sourceFolder := "/mnt/data/elfeo/Projets/form-tview/test/source"
-	targetFolder := "/mnt/data/elfeo/Projets/form-tview/test/target"
+	sourceFolder := dname
+	targetFolder := path
 
 	scaffolder, err := scaffold.NewScaffolder(sourceFolder, targetFolder)
 	if err != nil {
