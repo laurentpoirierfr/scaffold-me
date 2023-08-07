@@ -17,7 +17,6 @@ const (
 	QUIT          = "Quit"
 	SAVE          = "Save"
 	SCAFFOLD_YAML = "scaffold.yml"
-	GIT_FOLDER    = "/.git"
 )
 
 type Scaffold struct {
