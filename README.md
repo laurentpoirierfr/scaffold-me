@@ -50,6 +50,20 @@ Flags:
       --user string       User login to git repository.
 ```
 
+### Exemple usage with default values
+
+```bash
+mkdir test
+cd test
+scaffold-me get
+```
+
+![./docs/assets/input-screen.png](./docs/assets/input-screen.png)
+
+
+To generate tu scaffold select ** Save **
+
+
 ### Creation of a scaffolder
 
 Directory Organization Example
