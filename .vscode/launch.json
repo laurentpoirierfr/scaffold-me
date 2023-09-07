@@ -9,7 +9,10 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/cmd/main.go"
+            "program": "${workspaceFolder}/main.go",
+            "args": ["get", "--branch", "develop"],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/test"
         }
     ]
 }
