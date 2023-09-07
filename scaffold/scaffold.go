@@ -23,12 +23,18 @@ type Scaffold struct {
 	Version     string  `yaml:"version"`
 	Description string  `yaml:"description"`
 	Fields      []Field `yaml:"fields"`
+	Exclude     Exclude `yaml:"exclude"`
 }
 
 type Field struct {
 	Name        string `yaml:"name"`
 	Description string `yaml:"description"`
 	Default     string `yaml:"default"`
+}
+
+type Exclude struct {
+	Files   []string
+	Folders []string
 }
 
 type Scaffolder struct {
@@ -142,6 +148,23 @@ func (s *Scaffolder) createTargetFolders() error {
 	return nil
 }
 
+func (s *Scaffolder) isExcluded(filename string) bool {
+
+	for i := 0; i < len(s.Scaffold.Exclude.Folders); i++ {
+		if strings.Contains(filename, s.Scaffold.Exclude.Folders[i]) {
+			return true
+		}
+	}
+
+	for i := 0; i < len(s.Scaffold.Exclude.Files); i++ {
+		if strings.Contains(filename, s.Scaffold.Exclude.Files[i]) {
+			return true
+		}
+	}
+
+	return false
+}
+
 func (s *Scaffolder) copyTargetFiles() error {
 	for i := 0; i < len(s.Files); i++ {
 		path := s.Target + s.changeFileName(s.Files[i])
@@ -151,18 +174,27 @@ func (s *Scaffolder) copyTargetFiles() error {
 			log.Fatal(err)
 		}
 
-		text := string(fileContent)
-		t, err := template.New("todos").Parse(text)
-		if err != nil {
-			return err
-		}
-		f, err := os.Create(path)
-		if err != nil {
-			return err
-		}
-		err = t.Execute(f, s.Values)
-		if err != nil {
-			return err
+		if !s.isExcluded(path) {
+			text := string(fileContent)
+			t, err := template.New("scaffolder").Parse(text)
+			if err != nil {
+				return err
+			}
+			// Template if not
+			f, err := os.Create(path)
+			if err != nil {
+				return err
+			}
+			err = t.Execute(f, s.Values)
+			if err != nil {
+				return err
+			}
+		} else {
+			// Copy if exclude only
+			err = os.WriteFile(path, fileContent, 0644)
+			if err != nil {
+				return err
+			}
 		}
 	}
 	return nil
